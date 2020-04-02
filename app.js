@@ -33,8 +33,13 @@ const app = () => {
     sounds.forEach(sound => {
         sound.addEventListener('click', function () {
             song.src = this.getAttribute('data-sound');
-            video.src = this.getAttribute('data-video');
-            checkPlaying(song);
+            song.play();
+            const videoRegex = RegExp(this.getAttribute('data-video') + '$');
+            if (!videoRegex.test(video.src)) {
+                video.src = this.getAttribute('data-video');
+            }
+            video.play();
+            play.src = './svg/pause.svg';
         });
     });
 
